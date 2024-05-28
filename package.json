@@ -22,7 +22,18 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "ts-standard": "^12.0.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "eslintConfig": {
+    "extends": ["./node_modules/ts-standard/eslintrc.json",
+    "plugin:@typescript-eslint/recommended"],
+    "rules": {
+      "react/jsx-no-target-blank": "off",
+      "@typescript-eslint/explicit-function-return-type": "off"
+    }
+
   }
+
 }
