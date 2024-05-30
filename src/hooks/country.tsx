@@ -1,30 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Country } from '@/types/types'
 
 interface UseCountry {
   countries: Country[]
   loading: boolean
+  setCountries: (countries: Country[]) => void
+  getCountries: ({ url }: { url: string }) => Promise<void>
 }
 
 export function useCountry (): UseCountry {
   const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
-      .then(async response => {
-        if (!response.ok) {
-          throw new Error('Error en la solicitud: ' + response.status)
-        }
-        return await response.json()
-      })
-      .then(data => {
-        setCountries(data)
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Hubo un problema con la solicitud:', error)
-      })
-  }, [])
-  return { countries, loading }
+  const getCountries = async ({ url }: { url: string }): Promise<void> => {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`)
+    }
+    const data = await response.json()
+    setCountries(data)
+    setLoading(false)
+  }
+
+  return { countries, loading, setCountries, getCountries }
 }

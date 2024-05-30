@@ -1,10 +1,19 @@
+import { useEffect } from 'react'
 import { Header } from '@/components/Header'
 import { Toolbar } from './components/Toolbar'
 import { useCountry } from './hooks/country'
 import { CardCountry } from './components/CardCountry'
 import { CardLoading } from './components/CardLoading'
+import { URL_ALL } from './constants/const'
 function App (): JSX.Element {
-  const { countries, loading } = useCountry()
+  const { countries, loading, getCountries } = useCountry()
+
+  useEffect(() => {
+    getCountries({ url: URL_ALL }).catch((error) => {
+      console.error(error)
+    })
+  }, [])
+
   return (
     <>
       <Header />

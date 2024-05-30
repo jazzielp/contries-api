@@ -112,3 +112,5 @@ export interface PostalCode {
   format: string
   regex: string
 }
+
+export type Region = typeof REGIONS[keyof typeof REGIONS]
