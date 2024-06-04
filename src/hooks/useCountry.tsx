@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Country } from '@/types/types'
+import { getCountry } from '@/utils/getCountry'
+import { URL_ALL } from '@/constants/const'
 
 interface UseCountry {
   countries: Country[]
@@ -13,24 +15,18 @@ export function useCountry (): UseCountry {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(true)
-    fetch('https://restcountries.com/v3.1/all')
-      .then(async response => {
-        if (!response.ok) {
-          throw new Error(`Error en la solicitud:  ${response.status}`)
-        }
-        return await response.json()
-      })
-      .then(data => {
+    const getAllCountries = async (): Promise<void> => {
+      setLoading(true)
+      try {
+        const data = await getCountry({ url: URL_ALL })
         setCountries(data)
-        // Ahora puedes trabajar con la variable `countries`
-      })
-      .catch(error => {
-        console.error('Hubo un problema con la solicitud:', error)
-      })
-      .finally(() => {
+      } catch (error) {
+        console.error('Error al obtener los datos de los paises:', error)
+      } finally {
         setLoading(false)
-      })
+      }
+    }
+    getAllCountries().catch(console.error)
   }, [])
 
   return { countries, loading, setCountries, setLoading }
