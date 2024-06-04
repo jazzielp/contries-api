@@ -3,10 +3,8 @@ import { Toolbar } from './components/Toolbar'
 import { useCountry } from './hooks/useCountry'
 import { CardCountry } from './components/CardCountry'
 import { CardLoading } from './components/CardLoading'
-import { URL_ALL } from './constants/const'
 function App (): JSX.Element {
-  console.log('url', URL_ALL)
-  const { countries, loading } = useCountry({ url: URL_ALL })
+  const { countries, loading } = useCountry()
 
   return (
     <>
