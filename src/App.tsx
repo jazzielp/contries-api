@@ -1,18 +1,12 @@
-import { useEffect } from 'react'
 import { Header } from '@/components/Header'
 import { Toolbar } from './components/Toolbar'
-import { useCountry } from './hooks/country'
+import { useCountry } from './hooks/useCountry'
 import { CardCountry } from './components/CardCountry'
 import { CardLoading } from './components/CardLoading'
 import { URL_ALL } from './constants/const'
 function App (): JSX.Element {
-  const { countries, loading, getCountries } = useCountry()
-
-  useEffect(() => {
-    getCountries({ url: URL_ALL }).catch((error) => {
-      console.error(error)
-    })
-  }, [])
+  console.log('url', URL_ALL)
+  const { countries, loading } = useCountry({ url: URL_ALL })
 
   return (
     <>
@@ -32,7 +26,7 @@ function App (): JSX.Element {
               )
             : (
                 countries?.slice(0, 8).map(country => (
-                  <CardCountry contry={country} key={country.name.common} />
+                  <CardCountry contry={country} key={country.name} />
                 ))
               )
         }

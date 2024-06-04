@@ -1,3 +1,4 @@
+import { REGIONS } from '@/constants/const'
 export interface Country {
   name: Name
   tld: string[]
@@ -114,3 +115,11 @@ export interface PostalCode {
 }
 
 export type Region = typeof REGIONS[keyof typeof REGIONS]
+
+export interface CountryMap {
+  name: string
+  flag: string
+  population: number
+  region: string
+  capital: string
+}

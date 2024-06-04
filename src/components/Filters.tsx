@@ -1,9 +1,11 @@
 import { Down } from '@/assets/icons/Down'
 import { REGIONS } from '@/constants/const'
+// import { useCountry } from '@/hooks/useCountry'
 import { Region } from '@/types/types'
 export function Filters (): JSX.Element {
+  // const { filterByRegion } = useCountry()
   const handleFilterByRegion = ({ region }: { region: Region }): void => {
-    console.log('filter by', region)
+    // filterByRegion({ region })
   }
   return (
     <div id='filters' className='relative'>
