@@ -3,6 +3,7 @@ import { Toolbar } from './components/Toolbar'
 import { useCountry } from './hooks/useCountry'
 import { CardCountry } from './components/CardCountry'
 import { CardLoading } from './components/CardLoading'
+import { Router, Route } from 'react-router'
 function App (): JSX.Element {
   const { countries, loading } = useCountry()
 
