@@ -123,3 +123,7 @@ export interface CountryMap {
   region: string
   capital: string
 }
+
+export interface TypeMain {
+  children: React.ReactNode
+}
