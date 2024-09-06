@@ -1,8 +1,15 @@
 import { Back } from '@/assets/icons/Back'
-import { Country } from '@/types/types'
+import { Country, Currencies } from '@/types/types'
 
 interface TypeProps {
   country: Country
+}
+
+const getCurrency = (currency: Currencies): string => {
+  const currencyKey = Object.keys(currency)[0] as keyof Currencies
+  const currencyName = currency[currencyKey].name
+  if (currencyName !== undefined && currencyName !== null && currencyName !== '') return currencyName
+  return ''
 }
 
 export function CountryDetail ({ country }: TypeProps): JSX.Element {
@@ -53,11 +60,12 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
               </p>
               <p className='text-sm font-nunito font-light leading-8 text-light-text dark:text-white'>
                 <span className='font-semibold'>Currencies: </span>
-                {country.currencies}
+                {
+                  getCurrency(country.currencies)
+                }
               </p>
               <p className='text-sm font-nunito font-light leading-8 text-light-text dark:text-white'>
                 <span className='font-semibold'>Languages: </span>
-                {country.languages}
               </p>
             </div>
           </div>
