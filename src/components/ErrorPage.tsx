@@ -1,6 +1,6 @@
 export function ErrorPage (): JSX.Element {
   return (
-    <div className='grid h-screen place-content-center px-4'>
+    <div className='m-auto mt-44'>
       <div className='text-center'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
