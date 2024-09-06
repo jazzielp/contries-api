@@ -1,6 +1,6 @@
 import { Header } from '@/components/Header'
 import { ListCountry } from '@/components/ListCountry'
-import { CountryDetail } from '@/components/CountryDetail'
+import { Country } from '@/components/Country'
 import { ErrorPage } from '@/components/ErrorPage'
 import { Routes, Route } from 'react-router'
 function App (): JSX.Element {
@@ -9,7 +9,7 @@ function App (): JSX.Element {
       <Header />
       <Routes>
         <Route path='/' element={<ListCountry />} />
-        <Route path='/country/:name' element={<CountryDetail />} />
+        <Route path='/country/:name' element={<Country />} />
         <Route path='/*' element={<ErrorPage />} />
       </Routes>
     </>
