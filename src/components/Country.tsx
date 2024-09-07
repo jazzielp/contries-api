@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { URL_NAME } from '@/constants/const'
+import { CountryDetail } from '@/components/CountryDetail'
+import { ErrorPage } from './ErrorPage'
 
 export function Country (): JSX.Element {
   const { name } = useParams <{ name: string }>()
@@ -27,12 +29,7 @@ export function Country (): JSX.Element {
     }
   }, [name])
   if (loading) return <h2>Loading...</h2>
-  if (error !== undefined) return <h2>Error: {error}</h2>
-
-  return (
-    <>
-      <h2>Country - {name}</h2>
-      {console.log(country)}
-    </>
-  )
+  if (error !== undefined && error !== null) return <h2>Error: {error}</h2>
+  if (country !== null) return <CountryDetail country={country[0]} />
+  return <ErrorPage />
 }

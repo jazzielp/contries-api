@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Back } from '@/assets/icons/Back'
 import { Country, Currencies } from '@/types/types'
+import { URL_CODES } from '../constants/const'
 
 interface TypeProps {
   country: Country
@@ -13,6 +16,29 @@ const getCurrency = (currency: Currencies): string => {
 }
 
 export function CountryDetail ({ country }: TypeProps): JSX.Element {
+  const { borders } = country
+  const [countriesBorder, setCountriesBorder] = useState<Country[]>()
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (borders.length > 0) {
+      const borderString = borders.join(',')
+      fetch(`${URL_CODES}${borderString}`)
+        .then(async (resp) => {
+          if (!resp.ok) {
+            throw new Error('Error fetching country data')
+          }
+          return await resp.json()
+        })
+        .then((data) => {
+          setCountriesBorder(data)
+        })
+        .catch((err) => {
+          setError(err.menssage)
+        })
+    }
+  }, [])
+
   return (
     <main className='lg:px-15 px-4 md:px-10 lg:px-20 py-10 mx-auto max-w-[1440px]'>
       <div className=''>
@@ -72,22 +98,15 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
           <div className='flex flex-col md:flex-row mt-8 lg:mt-16'>
             <p className='md:w-1/3 font-nunito font-semibold text-base dark:text-white mb-4 mr-4'>Border Countries:</p>
 
+            {error !== undefined ? error : ''}
             <ul className='flex gap-4 w-full flex-wrap'>
-              <li className='hover:scale-105 transition-transform duration-150'>
-                <Link> France </Link>
-              </li>
-              <li className='hover:scale-105 transition-transform duration-150'>
-                <Link> Germany </Link>
-              </li>
-              <li className='hover:scale-105 transition-transform duration-150'>
-                <Link> Nether </Link>
-              </li>
-              <li className='hover:scale-105 transition-transform duration-150'>
-                <Link> Netherlands </Link>
-              </li>
-              <li className='hover:scale-105 transition-transform duration-150'>
-                <Link> Netherlands </Link>
-              </li>
+              {
+                  countriesBorder?.map((country) => (
+                    <li key={country.cca2} className='hover:scale-105 transition-transform duration-150'>
+                      <Link className='text-xs text-light-text dark:text-white font-normal bg-white shadow-nav dark:bg-dark-elements py-[6px] px-[23px] w-[104px] rounded-md font-nunito dark:hover:bg-light-input transition-colors duration-150' to={`/country/${country.name.common}`}> {country.name.common} </Link>
+                    </li>
+                  ))
+              }
             </ul>
           </div>
         </div>
