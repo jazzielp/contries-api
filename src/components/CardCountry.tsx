@@ -1,4 +1,5 @@
 import { Country } from '@/types/types'
+import { Link } from 'react-router-dom'
 
 interface Props {
   country: Country
@@ -6,7 +7,7 @@ interface Props {
 
 export function CardCountry ({ country }: Props): JSX.Element {
   return (
-    <article className='w-[264px] h-[336px] mx-auto rounded-lg bg-white shadow-md overflow-hidden hover:cursor-pointer hover:scale-105 transition-all duration-300 dark:bg-dark-elements'>
+    <Link to={`/country/${country.name.common}`} className='w-[264px] h-[336px] mx-auto rounded-lg bg-white shadow-md overflow-hidden hover:cursor-pointer hover:scale-105 transition-all duration-300 dark:bg-dark-elements'>
       <picture className=''>
         <img className='w-full h-1/2 object-cover font-nunito' src={country.flags.svg} alt={country.name.common} />
       </picture>
@@ -23,6 +24,6 @@ export function CardCountry ({ country }: Props): JSX.Element {
         </p>
 
       </div>
-    </article>
+    </Link>
   )
 }
