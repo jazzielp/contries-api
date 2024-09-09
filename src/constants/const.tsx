@@ -1,5 +1,5 @@
 export const REGIONS = {
-  FilterByRegion: 'Filter by region',
+  All: 'Filter by region',
   Africa: 'Africa',
   America: 'America',
   Asia: 'Asia',
