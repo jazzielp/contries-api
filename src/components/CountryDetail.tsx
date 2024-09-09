@@ -42,7 +42,7 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
   return (
     <main className='lg:px-15 px-4 md:px-10 lg:px-20 py-10 mx-auto max-w-[1440px]'>
       <div className=''>
-        <Link to='/' className='flex items-center gap-3 text-sm text-light-text dark:text-white font-light bg-white dark:bg-dark-elements shadow-button py-[6px] px-[23px] w-[104px] rounded-sm font-nunito hover:bg-light-input hover:text-white dark:hover:bg-light-input transition-colors duration-150 ' href='/'>
+        <Link to='/' className='flex items-center gap-3 text-sm text-light-text dark:text-white font-light bg-white dark:bg-dark-elements shadow-button py-[6px] px-[23px] w-[104px] rounded-sm font-nunito hover:bg-light-input hover:text-white dark:hover:bg-light-input transition-colors duration-150 '>
           <Back />
           Back
         </Link>
