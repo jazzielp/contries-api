@@ -21,7 +21,7 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (borders.length > 0) {
+    if (borders !== undefined) {
       const borderString = borders.join(',')
       fetch(`${URL_CODES}${borderString}`)
         .then(async (resp) => {
@@ -37,12 +37,12 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
           setError(err.menssage)
         })
     }
-  }, [])
+  }, [borders])
 
   return (
     <main className='lg:px-15 px-4 md:px-10 lg:px-20 py-10 mx-auto max-w-[1440px]'>
       <div className=''>
-        <a className='flex items-center gap-3 text-sm text-light-text dark:text-white font-light bg-white dark:bg-dark-elements shadow-button py-[6px] px-[23px] w-[104px] rounded-sm font-nunito hover:bg-light-input dark:hover:bg-light-input transition-colors duration-150 ' href='/'>
+        <a className='flex items-center gap-3 text-sm text-light-text dark:text-white font-light bg-white dark:bg-dark-elements shadow-button py-[6px] px-[23px] w-[104px] rounded-sm font-nunito hover:bg-light-input hover:text-white dark:hover:bg-light-input transition-colors duration-150 ' href='/'>
           <Back />
           Back
         </a>
@@ -103,7 +103,7 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
               {
                   countriesBorder?.map((country) => (
                     <li key={country.cca2} className='hover:scale-105 transition-transform duration-150'>
-                      <Link className='text-xs text-light-text dark:text-white font-normal bg-white shadow-nav dark:bg-dark-elements py-[6px] px-[23px] w-[104px] rounded-md font-nunito dark:hover:bg-light-input transition-colors duration-150' to={`/country/${country.name.common}`}> {country.name.common} </Link>
+                      <Link className='text-xs text-light-text dark:text-white font-normal bg-white shadow-nav dark:bg-dark-elements py-[6px] px-[23px] w-[104px] rounded-md font-nunito' to={`/country/${country.name.common}`}> {country.name.common} </Link>
                     </li>
                   ))
               }
