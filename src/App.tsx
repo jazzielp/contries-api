@@ -9,6 +9,7 @@ function App (): JSX.Element {
       <Header />
       <Routes>
         <Route path='/' element={<ListCountry />} />
+        <Route path='/filter/:region' element={<ListCountry />} />
         <Route path='/country/:name' element={<Country />} />
         <Route path='/*' element={<ErrorPage />} />
       </Routes>

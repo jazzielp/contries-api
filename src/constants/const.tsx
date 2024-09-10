@@ -1,5 +1,5 @@
 export const REGIONS = {
-  FilterByRegion: 'Filter by region',
+  All: 'All',
   Africa: 'Africa',
   America: 'America',
   Asia: 'Asia',
@@ -10,3 +10,4 @@ export const REGIONS = {
 export const URL_ALL = 'https://restcountries.com/v3.1/all'
 export const URL_NAME = 'https://restcountries.com/v3.1/name/'
 export const URL_CODES = 'https://restcountries.com/v3.1/alpha?codes='
+export const URL_REGION = 'https://restcountries.com/v3.1/region/'

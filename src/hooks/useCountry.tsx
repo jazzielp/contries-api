@@ -4,13 +4,23 @@ import { Country } from '@/types/types'
 interface UseCountry {
   countries: Country[]
   loading: boolean
+  error: null | string
   setCountries: (countries: Country[]) => void
   setLoading: (loading: boolean) => void
 }
 
-export function useCountry (): UseCountry {
+interface TypeProps {
+  url: string
+  param?: string
+}
+
+export function useCountry ({ url, param }: TypeProps): UseCountry {
   const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  const fullUrl = param !== null && param !== undefined ? url + param : url
+  console.log('🚀 ~ useCountry ~ fullUrl:', fullUrl)
 
   useEffect(() => {
     setLoading(true)
@@ -26,12 +36,12 @@ export function useCountry (): UseCountry {
         // Ahora puedes trabajar con la variable `countries`
       })
       .catch(error => {
-        console.error('Hubo un problema con la solicitud:', error)
+        setError(error)
       })
       .finally(() => {
         setLoading(false)
       })
   }, [])
 
-  return { countries, loading, setCountries, setLoading }
+  return { countries, loading, setCountries, setLoading, error }
 }

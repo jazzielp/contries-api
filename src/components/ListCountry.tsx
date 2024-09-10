@@ -2,9 +2,10 @@ import { CardLoading } from './CardLoading'
 import { CardCountry } from './CardCountry'
 import { useCountry } from '@/hooks/useCountry'
 import { Toolbar } from '@/components/Toolbar'
+import { URL_ALL } from '@/constants/const'
 
 export function ListCountry (): JSX.Element {
-  const { countries, loading } = useCountry()
+  const { countries, loading } = useCountry({ url: URL_ALL })
   return (
     <>
       <Toolbar />
