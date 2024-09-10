@@ -4,7 +4,6 @@ import { REGIONS } from '@/constants/const'
 import { Region } from '@/types/types'
 export function Filters (): JSX.Element {
   const [filter, setFilter] = useState<Region>('All')
-
   useEffect(() => {
 
   }, [filter])
