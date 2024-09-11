@@ -8,6 +8,7 @@ export function Filters (): JSX.Element {
   const navigate = useNavigate()
 
   const handleClick = (region: Region): void => {
+    document.getElementById('filter-items')?.classList.toggle('hidden')
     setFilter(region)
     navigate(`/filter/${region}`)
   }
