@@ -10,7 +10,6 @@ export function ListCountry (): JSX.Element {
   let url = URL_ALL
   let param = ''
   if (region !== undefined) {
-    console.log('entra')
     url = URL_REGION
     param = region
   }
@@ -19,8 +18,8 @@ export function ListCountry (): JSX.Element {
     param = name
   }
 
-  const { countries, loading, error } = useCountry({ url: URL_ALL, param })
-  console.log(error)
+  const { countries, loading, error } = useCountry({ url, param })
+  // console.log('error', error)
   if (error !== undefined && error !== null) return <h2>Error: {error}</h2>
   return (
     <>

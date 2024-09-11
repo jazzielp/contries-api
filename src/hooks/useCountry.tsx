@@ -18,10 +18,8 @@ export function useCountry ({ url, param }: TypeProps): UseCountry {
   const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null | number>(null)
-  console.log(url)
 
   const fullUrl = param !== null && param !== undefined ? url + param : url
-  console.log(fullUrl)
 
   useEffect(() => {
     setLoading(true)
@@ -29,7 +27,6 @@ export function useCountry ({ url, param }: TypeProps): UseCountry {
       .then(async response => {
         if (!response.ok) {
           setError(response.status)
-          console.log(response.status)
         }
         return await response.json()
       })
@@ -44,7 +41,7 @@ export function useCountry ({ url, param }: TypeProps): UseCountry {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [url, param])
 
   return { countries, loading, setCountries, setLoading, error }
 }
