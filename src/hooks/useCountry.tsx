@@ -4,7 +4,7 @@ import { Country } from '@/types/types'
 interface UseCountry {
   countries: Country[]
   loading: boolean
-  error: null | string
+  error: null | string | number
   setCountries: (countries: Country[]) => void
   setLoading: (loading: boolean) => void
 }
@@ -17,17 +17,19 @@ interface TypeProps {
 export function useCountry ({ url, param }: TypeProps): UseCountry {
   const [countries, setCountries] = useState<Country[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null | number>(null)
+  console.log(url)
 
   const fullUrl = param !== null && param !== undefined ? url + param : url
-  console.log('🚀 ~ useCountry ~ fullUrl:', fullUrl)
+  console.log(fullUrl)
 
   useEffect(() => {
     setLoading(true)
-    fetch('https://restcountries.com/v3.1/all')
+    fetch(fullUrl)
       .then(async response => {
         if (!response.ok) {
-          throw new Error(`Error en la solicitud:  ${response.status}`)
+          setError(response.status)
+          console.log(response.status)
         }
         return await response.json()
       })
@@ -36,7 +38,8 @@ export function useCountry ({ url, param }: TypeProps): UseCountry {
         // Ahora puedes trabajar con la variable `countries`
       })
       .catch(error => {
-        setError(error)
+        setError(error.menssage)
+        console.log(error.menssage)
       })
       .finally(() => {
         setLoading(false)
