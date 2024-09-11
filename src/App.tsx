@@ -10,6 +10,7 @@ function App (): JSX.Element {
       <Routes>
         <Route path='/' element={<ListCountry />} />
         <Route path='/filter/:region' element={<ListCountry />} />
+        <Route path='/search/:name' element={<ListCountry />} />
         <Route path='/country/:name' element={<Country />} />
         <Route path='/*' element={<ErrorPage />} />
       </Routes>
