@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { Moon } from '@/assets/icons/Moon'
 import { Sun } from '@/assets/icons/Sun'
-import { useDarkMode } from '@/store/useDarkmode'
+import { store } from '@/store/store'
 
 export function Header (): JSX.Element {
-  const setDarkmode = useDarkMode((state) => state.setDarkmode)
-  const darkmode = useDarkMode((state) => state.darkmode)
+  const setDarkmode = store((state) => state.setDarkmode)
+  const darkmode = store((state) => state.darkmode)
   useEffect(() => {
     if (darkmode) {
       document.documentElement.classList.add('dark')

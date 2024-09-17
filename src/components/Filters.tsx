@@ -1,16 +1,23 @@
+import { useNavigate } from 'react-router-dom'
+
 import { Down } from '@/assets/icons/Down'
 import { REGIONS } from '@/constants/const'
+import { store } from '@/store/store'
 import { Region } from '@/types/types'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 export function Filters (): JSX.Element {
-  const [filter, setFilter] = useState<Region>('All')
   const navigate = useNavigate()
+  const filter = store((state) => state.filter)
+  const setFilter = store((state) => state.setFilter)
 
   const handleClick = (region: Region): void => {
     document.getElementById('filter-items')?.classList.toggle('hidden')
     setFilter(region)
-    navigate(`/filter/${region}`)
+    if (region === REGIONS.All) {
+      navigate('/')
+    } else {
+      navigate(`/filter/${region}`)
+    }
   }
   return (
     <div id='filters' className='relative'>
@@ -28,6 +35,12 @@ export function Filters (): JSX.Element {
         id='filter-items'
         className='w-[200px] bg-white dark:bg-dark-elements rounded-md shadow-nav py-4 px-1 absolute top-[100%] left-0 z-10 mt-1 hidden animate-fadeInDown'
       >
+        {
+          filter !== REGIONS.All &&
+            <li onClick={() => handleClick(REGIONS.All)} className='p-3 dark:text-white rounded-md cursor-pointer hover:bg-light-input transition-colors'>
+              {REGIONS.All}
+            </li>
+        }
         <li onClick={() => handleClick(REGIONS.Africa)} className='p-3 dark:text-white rounded-md cursor-pointer hover:bg-light-input transition-colors'>
           {REGIONS.Africa}
         </li>

@@ -27,6 +27,8 @@ export function useCountry ({ url, param }: TypeProps): UseCountry {
       .then(async response => {
         if (!response.ok) {
           setError(response.status)
+        } else {
+          setError(null)
         }
         return await response.json()
       })
