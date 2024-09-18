@@ -48,14 +48,14 @@ export function CountryDetail ({ country }: TypeProps): JSX.Element {
         </Link>
       </div>
       <section className='my-[64px] lg:flex justify-between items-center'>
-        <picture className='mr-[120px]'>
+        <picture className='mr-[120px] lg:w-[560px]'>
           <img
-            className='w-full rounded-md mb-[44px] lg:w-[560px] md:h-[401px] md:object-container md:object-center'
-            src={country.flags.png}
+            className='w-full rounded-md mb-[44px] md:h-[401px] md:object-container md:object-center'
+            src={country.flags.svg}
             alt='country flag'
           />
         </picture>
-        <div className=''>
+        <div className='flex-1'>
           <h1
             className='font-nunito text-2xl font-extrabold text-light-text dark:text-white mb-4'
           >
