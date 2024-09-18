@@ -1,5 +1,5 @@
 
-export function CountryNotFound (): JSX.Element {
+export function NotFound (): JSX.Element {
   return (
     <>
       <h2>Country not found</h2>
