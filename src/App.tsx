@@ -1,7 +1,7 @@
 import { Header } from '@/components/Header'
 import { ListCountry } from '@/components/ListCountry'
 import { Country } from '@/components/Country'
-import { ErrorPage } from '@/components/ErrorPage'
+import { NotFound } from '@/components/NotFound'
 import { Routes, Route } from 'react-router'
 function App (): JSX.Element {
   return (
@@ -12,7 +12,7 @@ function App (): JSX.Element {
         <Route path='/filter/:region' element={<ListCountry />} />
         <Route path='/search/:name' element={<ListCountry />} />
         <Route path='/country/:name' element={<Country />} />
-        <Route path='/*' element={<ErrorPage />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
     </>
   )

@@ -5,7 +5,7 @@ import { CardCountry } from './CardCountry'
 import { useCountry } from '@/hooks/useCountry'
 import { Toolbar } from '@/components/Toolbar'
 import { REGIONS, URL_ALL, URL_NAME, URL_REGION } from '@/constants/const'
-import { NotFound } from './NotFound'
+import { CountryNotFound } from './CountryNotFound'
 import { Loading } from './Loading'
 import { store } from '@/store/store'
 import { Region } from '@/types/types'
@@ -50,7 +50,7 @@ export function ListCountry (): JSX.Element {
     <>
       <Toolbar />
       <main className='grid grid-cols-auto-fill-minmax gap-16 max-w-[1440px] mx-auto mb-20 px-4 md:px-10 lg:px-20'>
-        {(error !== null && error !== undefined) && <NotFound />}
+        {(error !== null && error !== undefined) && <CountryNotFound />}
         {loading && <Loading />}
         {countries.length > 0 && countries?.slice(0, limit).map(country => (
           <CardCountry country={country} key={country.name.common} />
